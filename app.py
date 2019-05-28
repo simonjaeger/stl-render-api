@@ -1,5 +1,6 @@
 import uuid
 import subprocess
+import shutil
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
@@ -13,11 +14,14 @@ def get_stl_thumbnail():
     png_file = '{}.png'.format(session_id)
 
     with open(scad_file, 'w+') as file:
-        file.write('import({});'.format(stl_file))
+        file.write("import('{}'');".format(stl_file))
 
     # Render image.
     res = subprocess.check_output(['openscad', '-o', png_file, scad_file])
     print(res)
+
+    # Remove scad file.
+    shutil.rmtree(scad_file)
 
     return jsonify({'task': res}), 201
 
