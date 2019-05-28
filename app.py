@@ -1,7 +1,5 @@
-import uuid
-import subprocess
-import shutil
-from flask import Flask, jsonify, request
+import uuid, subprocess, os
+from flask import Flask, jsonify, request, send_file
 
 app = Flask(__name__)
 
@@ -21,9 +19,9 @@ def get_stl_thumbnail():
     print(res)
 
     # Remove scad file.
-    shutil.rmtree(scad_file)
+    os.remove(scad_file)
 
-    return jsonify({'task': res}), 201
+    return send_file(png_file, mimetype='image/png')
 
 if __name__ == '__main__':
     app.run(debug=True)
