@@ -15,7 +15,7 @@ def get_stl_thumbnail():
         file.write('import("{}");'.format(stl_file))
 
     # Render image.
-    res = subprocess.check_output(['openscad', '-o', png_file, scad_file, '--colorscheme=Starnight', '--viewall', '--autocenter', '--render'])
+    res = subprocess.check_output(['openscad', '-o', png_file, scad_file, '--colorscheme=Tomorrow', '--viewall', '--autocenter', '--render'])
     print(res)
 
     # Clean up.
