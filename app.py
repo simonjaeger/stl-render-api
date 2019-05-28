@@ -1,5 +1,5 @@
 import uuid, subprocess, os
-from flask import Flask, jsonify, request, send_file
+from flask import Flask, jsonify, request, send_file, after_this_request
 
 app = Flask(__name__)
 
