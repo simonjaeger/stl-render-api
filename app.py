@@ -12,7 +12,7 @@ def get_stl_thumbnail():
     scad_file = '{}.scad'.format(session_id)
     png_file = '{}.png'.format(session_id)
 
-    with open(scad_file) as file:
+    with open(scad_file, 'w+') as file:
         file.write('import({});'.format(stl_file))
 
     # Render image.
