@@ -33,4 +33,4 @@ def get_stl_thumbnail():
     return send_file(png_file, mimetype='image/png')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host= '0.0.0.0')
