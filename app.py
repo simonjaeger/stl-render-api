@@ -14,7 +14,7 @@ def get_stl_thumbnail():
     png_file = '{}.png'.format(session_id)
 
     with open(scad_file, 'w+') as file:
-        file.write("import('{}');".format(stl_file))
+        file.write('import("{}");'.format(stl_file))
 
     # Render image.
     res = subprocess.check_output(['openscad', '-o', png_file, scad_file])
