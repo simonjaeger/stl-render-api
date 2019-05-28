@@ -22,7 +22,7 @@ def get_stl_thumbnail():
     @after_this_request
     def remove_files(response):
         try:
-            os.remove(png_file)
+            os.remove(scad_file)
         except Exception as error:
             print('An error ocurred when removing: {}.'.format(scad_file))
         try:
