@@ -18,9 +18,18 @@ def get_stl_thumbnail():
     res = subprocess.check_output(['openscad', '-o', png_file, scad_file])
     print(res)
 
-    # Remove scad file.
-    os.remove(scad_file)
-
+    # Clean up.
+    @after_this_request
+    def remove_files(response):
+        try:
+            os.remove(png_file)
+        except Exception as error:
+            print('An error ocurred when removing: {}.'.format(scad_file))
+        try:
+            os.remove(png_file)
+        except Exception as error:
+            print('An error ocurred when removing: {}.'.format(png_file))
+        return response
     return send_file(png_file, mimetype='image/png')
 
 if __name__ == '__main__':
